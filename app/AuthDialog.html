@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+
+<!-- TODO: Replace with true URL. -->
+<a href="http://127.0.0.1:8000/authenticate.html" target="_blank" onclick="enableSubmit();">Click here</a> to open the Cloud Share authentication window. When you have finished, you will receive a code. Enter it below.
+<br><br>
+Authentication code: <input type="text" id="code" onfocus="enableSubmit();">
+<br><br>
+<input type="button" id="submit" class="action" value="Continue" onclick="submit();" disabled>
+<span id="status" class="secondary" style="margin-left: 10px;"></span>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+var submitted = false;
+
+function enableSubmit() {
+  if (!submitted) {
+    $('#submit').prop('disabled', false);
+  }
+}
+
+function submit() {
+  $('#submit').prop('disabled', true);
+  $('#status').html('Authenticating...');
+  var code = trim($('#code').val());
+  google.script.run.processNewAccountId(code);
+  submitted = true;
+}
+
+function trim(str) {
+  return str.replace(/^\s+|\s+$/g, '');
+}
+</script>

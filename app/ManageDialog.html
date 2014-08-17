@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+<style>
+.hidden { display: none; }
+.invisible { visibility: hidden; }
+li { margin-left: 20px; }
+ul { margin-top: 0px; }
+</style>
+
+<div id="main">
+<div id="loading" class="gray">
+Loading...
+</div>
+<div id="message0" class="hidden">
+You have not connected any accounts.
+</div>
+<div id="message1" class="hidden">
+You have connected one account:
+</div>
+<div id="message2" class="hidden">
+You have connected the following accounts:
+
+</div>
+<div id="buttons" class="invisible">
+<br>
+<input type="button" class="action" value="Okay" onclick="google.script.host.close();">
+<input type="button" value="Add new account" onclick="add();">
+<input type="button" value="Disconnect all accounts" onclick="disconnect();">
+</div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+function add() {
+  google.script.run.showAuthDialog();
+  google.script.host.close();
+}
+
+function disconnect() {
+  google.script.run.clearAccounts();
+  google.script.host.close();
+}
+
+function init(accountData) {
+  var num = accountData ? accountData.accounts.length : 0;
+  $('#loading').addClass('hidden');
+  if (num == 0) {
+    $('#message0').removeClass('hidden');
+  } else if (num == 1) {
+    var account = accountData.accounts[0];
+    $('#message1').append('<ul><li>' + account.service_name + ' (' + account.account + ')</li></ul>');
+    $('#message1').removeClass('hidden');
+  } else {
+    $('#message2').append('<ul>');
+    for (var i = 0; i < accountData.accounts.length; i++) {
+      var account = accountData.accounts[i];
+      $('#message2').append('<li>' + account.service_name + ' (' + account.account + ')</li>');
+    }
+    $('#message2').append('</ul>');
+    $('#message2').removeClass('hidden');
+  }
+  $('#buttons').removeClass('invisible');
+  google.script.host.setHeight($('#main').height());
+}
+
+$(function() {
+  google.script.run.withSuccessHandler(init).getAccountData();
+});            
+</script>

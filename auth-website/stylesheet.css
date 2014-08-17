@@ -1,0 +1,47 @@
+body {
+    font-size: 16px;
+    background-color: #778;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 800px;
+    }
+}
+
+.content {
+    background-color: #FFF;
+    min-width: 650px;
+    border-radius: 5px;
+    padding: 30px 45px;
+}
+
+.hidden {
+    display: none;
+}
+
+#main {
+    margin-top: 100px;
+}
+
+#details {
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+#code {
+    margin-top: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#image {
+    width: 100%;
+    padding-right: 10px;
+}
+
+#auth-button {
+    margin-top: 20px;
+    width: 30%;
+}

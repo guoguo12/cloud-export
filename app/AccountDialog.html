@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+<style>
+/* prevents text from being cut off */
+select {
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+</style>
+
+<!-- TODO: Show Loading... and fetch account info from Properties asyncronously. -->
+Select the destination account:
+<br><br>
+<select id="account">
+<? for (var i = 0; i < accountObjects.length; i++) { ?>
+  <? var data = accountObjects[i]; ?>
+  <option value="<?= data.id ?>"><?= data.service_name ?> (<?= data.account ?>)</option>
+<? } ?>
+<option disabled>--------------------------------------------------</option>
+<option value="-1">Add new account...</option>
+</select>
+<br><br>
+<input type="button" id="submit" class="action" value="Continue" onclick="submit();">
+<span id="status" class="secondary" style="margin-left: 10px;"></span>
+
+<script>
+function submit() {
+  document.getElementById('submit').disabled = true;
+  var accountId = document.getElementById('account').value;
+  if (accountId == '-1') {
+    google.script.run.showAuthDialog();
+    document.getElementById('status').innerHTML = 'Loading...';
+  } else {
+    google.script.run.exportTo(accountId);
+    document.getElementById('status').innerHTML = 'Exporting...';
+  }
+}
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cloud Export Authentication</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.0/animate.min.css">
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+<div id="main" class="container content animated fadeIn">
+  <div class="row">
+    <div class="col-xs-4">
+    <img src="image.png" id="image" title="Placeholder logo shown.">
+    </div>
+    
+    <div class="col-xs-8">
+      <h1>Add-on authentication</h1>
+      <b>Cloud Export</b> is built on <a href="http://www.kloudless.com" target="_blank">Kloudless</a>, a trusted cloud interface.
+      Through Kloudless, you'll be able to share files with Dropbox, OneDrive, Box, and more.
+      <br>
+      <a id="auth-button" class="btn btn-primary btn-lg" role="button">Continue</a>
+    </div>
+  </div>
+</div>
+
+<div id="details" class="container content animated fadeIn">
+  <div id="success" class="hidden">
+    <h3>Success!</h3>
+    Copy the authentication code below and return to your Google Docs screen.
+    <div id="code"><code id="id"></code></div>
+  </div>
+  <div id="error" class="hidden">
+    <h3>Error</h3>
+    Authentication failed. Click "Continue" above to try again.
+  </div>
+  <div id="placeholder">
+    Have questions or comments? Check out our <!--<a href="help.html" target="_blank">help page</a>--><a href="#">help page</a> for FAQs and contact info!
+  </div>
+</div>
+
+<script src="https://kloudless-static-assets.s3-us-west-2.amazonaws.com/p/platform/sdk/kloudless.authenticator.v0.1.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+var e = document.getElementById("auth-button");
+
+Kloudless.authenticator(e, {
+    'app_id': '[YOUR APP ID HERE]'
+    // , 'services': ['dropbox', 'box', 'bitcasa', 'copy']
+}, function (err, result) {
+    $('#placeholder').addClass('hidden');
+    if (err) {
+        $('#error').removeClass('hidden');
+        $('#details').removeClass('fadeIn').addClass('swing');
+        return;
+    }
+    $('#id').text(result.id);
+    $('#success').removeClass('hidden');
+    Kloudless.stop(e);
+    $('#auth-button').addClass('disabled');
+    $('#details').removeClass('fadeIn').addClass('swing');
+});
+</script>
+</body>
+</html>
