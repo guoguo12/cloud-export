@@ -19,7 +19,7 @@ However, you can try Cloud Export in its unpublished form by clicking [here](htt
 
 1. Sign in with your Google account
 2. Click **File > Make a copy...** to copy the document (with the add-on) to your account
-3. In your copy, click **Add-ons > Cloud Export > Export current document...**
+3. In your copy, click **Add-ons > Copy of Cloud Export > Export current document...**
 4. After granting Cloud Export access to your document, follow the instructions to export your document to an external cloud storage service
 
 Please note the following:
