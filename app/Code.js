@@ -17,14 +17,14 @@ function showStartAuthDialog() {
   var dialog = HtmlService.createHtmlOutputFromFile('StartAuthDialog');
   dialog.setHeight(85);
   dialog.setWidth(400);
-  DocumentApp.getUi().showModalDialog(dialog, 'Welcome to Cloud Share!');
+  DocumentApp.getUi().showModalDialog(dialog, 'Welcome to Cloud Export!');
 }
 
 function showAuthDialog() {
   var dialog = HtmlService.createHtmlOutputFromFile('AuthDialog');
   dialog.setHeight(150);
   dialog.setWidth(360);
-  DocumentApp.getUi().showModalDialog(dialog, 'Cloud Share authentication');
+  DocumentApp.getUi().showModalDialog(dialog, 'Cloud Export authentication');
 }
 
 function showAccountDialog(accountObjects) {
