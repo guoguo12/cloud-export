@@ -63,7 +63,7 @@ Credits
 -------
 
 Without the following, Cloud Export would not exist:
-* [Kloudless](https://developers.kloudless.com) (and [authenticator](https://github.com/Kloudless/authenticator.js/))
+* [Kloudless](https://developers.kloudless.com) (and [authenticator.js](https://github.com/Kloudless/authenticator.js/))
 * [jQuery](https://jquery.com/)
 * [Bootstrap](http://getbootstrap.com/)
 * [Animate.css](https://daneden.github.io/animate.css/)
