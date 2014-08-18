@@ -34,7 +34,30 @@ If you make changes to the authorization page, replace `http://allenguo.us/proje
 Issues
 ------
 
-Coming soon.
+### Authentication workaround
+
+Cloud Export uses an offical Kloudless [authentication script](https://github.com/Kloudless/authenticator.js/) to connect users to their storage services. The user clicks on a button, triggering a pop-up that asks them to sign in to the cloud service of their choice. 
+
+Normally, this button would be part of the add-on user interface. However, the authentication script currently doesn't work within the add-on. As a result, Kloudless authentication for Cloud Export is handled on a [separate page](http://allenguo.us/projects/cloud-export/authenticate.html).
+
+Why doesn't the Kloudless authentication script work within the add-on? Prior to deployment, the add-on code is sanitized and sandboxed using Google's [Caja Compiler](https://code.google.com/p/google-caja/). It is likely that the sanitization process is preventing the authentication script from working properly.
+
+It is not known whether handling authentication on a completely separate page poses a security risk for users.
+
+### API key safety
+
+Every Kloudless app has an API key, which is meant to be kept secret.
+
+Cloud Export includes its API key in its main code file, `Code.gs` (called `Code.js` in this repo). As far as I can tell, `Code.gs` is not directly visible to users, and all requests made with the API key are made from Google's servers. However, it is not clear whether this is actually the case.
+
+Development
+-----------
+
+Because of the potential security risks, I do not plan to complete Cloud Export or submit it for publication.
+
+I hope that this repository will nonetheless be useful to developers interested in building their own Google Docs add-ons or Kloudless apps.
+
+That said, if you're looking for a completed Google Docs add-on that *has* been successfully published, check out [URL Shortener](https://github.com/guoguo12/url-shortener).
 
 Credits
 -------
