@@ -15,7 +15,7 @@ function onInstall() {
 
 function showStartAuthDialog() {
   var dialog = HtmlService.createHtmlOutputFromFile('StartAuthDialog');
-  dialog.setHeight(70);
+  dialog.setHeight(85);
   dialog.setWidth(400);
   DocumentApp.getUi().showModalDialog(dialog, 'Welcome to Cloud Share!');
 }
